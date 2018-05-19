@@ -1,0 +1,59 @@
+.box {
+  width: 100%;
+  height: 100%;
+  background-color: #c9c9c9;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.box > div {
+  position: relative;
+}
+
+.box .box_left {
+  width: 100px;
+  height: 100%;
+  float: left;
+  text-align: center;
+}
+
+.box .box_left ul li {
+  background-color: #ffffff;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #666;
+  border-right: 1px solid #666;
+}
+
+.box .box_left ul li.active {
+  background-color: #c9c9c9;
+  border-right: none;
+}
+
+.box .box_right {
+  height: 100%;
+  overflow: hidden;
+}
+
+.box .box_right ul {
+  margin-left: 20px;
+  background-color: #fff;
+}
+
+.box .box_right ul li {
+  text-align: center;
+  padding: 1%;
+  width: 33.33%;
+  float: left;
+}
+
+.box .box_right ul li > a {
+  border: 1px solid #000;
+  display: block;
+}
+
+.box .box_right ul li > a:hover {
+  background-color: #666;
+}
+/*# sourceMappingURL=classify.css.map */

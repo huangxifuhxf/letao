@@ -1,13 +1,71 @@
-/*µ¼º½À¸*/
-.lt_nav{
-    margin-top: 10px;
-    padding: 0 10px;
+@charset "UTF-8";
+/* å¯¼èˆªåŒº */
+.navBox {
+  padding: 10px;
 }
-.lt_nav a{
-    float: left;
-    width: 33.3333%;
+
+.navBox > ul li {
+  width: 33.33%;
+  float: left;
 }
-.lt_nav a img{
-    width: 100%;
-    display: block;
+
+.navBox > ul li > a {
+  width: 100%;
 }
+
+.navBox .cz_active a:nth-child(2) {
+  width: 32.9%;
+  float: right;
+}
+
+.navBox .cz_active a:nth-child(1) {
+  width: 67.1%;
+}
+
+.navBox .cz_active a:nth-child(1) > img {
+  width: 50%;
+  float: left;
+}
+
+.navBox .cz_active a:nth-child(3) {
+  width: 67.1%;
+}
+
+.navBox .cz_active a:nth-child(3) > img {
+  width: 50%;
+  float: left;
+}
+
+/* å“ç‰ŒåŒº */
+.pinpai {
+  padding: 0 10px 10px;
+}
+
+.pinpai .pinpai_content > ul li {
+  font-size: 14px;
+  padding: 5px;
+  float: left;
+  width: 49%;
+  text-align: center;
+  box-shadow: 0 0 2px 2px #666;
+  margin: 1% 0;
+}
+
+.pinpai .pinpai_content > ul li .name {
+  font-weight: bold;
+}
+
+.pinpai .pinpai_content > ul li .new {
+  color: red;
+  font-weight: bold;
+  line-height: 40px;
+}
+
+.pinpai .pinpai_content > ul li .old {
+  color: #ccc;
+}
+
+.pinpai .pinpai_content > ul li:nth-child(even) {
+  float: right;
+}
+/*# sourceMappingURL=index.css.map */

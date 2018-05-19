@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>search页面</title>
+  <title>login</title>
   <!-- 引入favicon 图标 -->
   <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
   <!-- 引入 fa 图标样式 -->
@@ -15,7 +15,6 @@
   <!-- 引入自己的公共样式 -->
   <link rel="stylesheet" href="./css/common.css">
   <!-- 引入当前页面的样式 -->
-  <link rel="stylesheet" href="./css/search.css">
 
 </head>
 
@@ -24,33 +23,29 @@
     <!-- 头部 -->
     <div class="lt_header">
       <a href="javascript:history.back();" class="it_hleft fa fa-arrow-left"></a>
-      <div class="it_hcenter">search</div>
+      <div class="it_hcenter">login</div>
       <a href="search.html" class="it_hright fa fa-search"></a>
     </div>
 
     <!-- 内容 -->
     <div class="lt_main">
       <div class="it_mainBox">
-        <!-- 搜索栏 -->
-        <div class="lt_userInput">
-          <form action="">
-            <input type="search" name="userKey" id="userKey">
-            <button class="lt_userSearch" type="button">搜索</button>
-          </form>
-        </div>
-        <!-- 搜索列表 -->
-        <div class="lt_searchList">
-          <!-- <div class="lt_title">
-              <span>搜索历史</span>
-              <span class="fa fa-trash">清空记录</span>
+        <form class="mui-input-group">
+          <div class="mui-input-row">
+            <label>用户名：</label>
+            <input type="text" placeholder="请输入itcast" class="lt_name">
           </div>
-          <ul class="lt_list">
-              <li>
-                  <a href="">电脑</a>
-                  <span class="fa fa-close"></span>
-              </li>
-          </ul> -->
-        </div>
+          <div class="mui-input-row">
+            <label>密码</label>
+            <input type="password" placeholder="请输入111111" class="mui-input-password lt_pwd" >
+            <span class="mui-icon mui-icon-eye "></span>
+          </div>
+
+          <div class="mui-button-row">
+            <button type="button" class="mui-btn mui-btn-primary">确认</button>&nbsp;&nbsp;
+            <button type="button" class="mui-btn mui-btn-danger">取消</button>
+          </div>
+        </form>
       </div>
 
     </div>
@@ -80,27 +75,6 @@
   </div>
 
 
-  <!-- 添加搜索历史记录结构块模板 -->
-  <script type="text/template" id="lt_history">
-    <% if(list.length ==0){ %>
-      <span>没有任何的搜索数据</span>
-      <% } else{ %>
-        <div class="lt_title">
-          <span>搜索历史</span>
-          <span class="fa fa-trash">清空记录</span>
-        </div>
-        <ul class="lt_list">
-          <% for(var i=list.length-1;i>=0;i--){ %>
-            <li>
-              <a href="searchList.html?key=<%=list[i]%>">
-                <%=list[i]%>
-              </a>
-              <span class="fa fa-close" data-index="<%=i%>"></span>
-            </li>
-            <% }%>
-        </ul>
-        <% }%>
-  </script>
 
 
 
@@ -120,7 +94,7 @@
 <script src="./js/common.js"></script>
 
 <!-- 引入当前页的JS -->
-<script src="./js/search.js"></script>
+<script src="./js/login.js"></script>
 
 
 

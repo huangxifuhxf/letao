@@ -1,0 +1,75 @@
+#OA_task_2 {
+  >li {
+    padding: 2;
+    .mui-navigate-right {
+      p {
+        color: #666;
+      }
+      .price {
+        padding: 5px 0px;
+        ;
+        .newPrice {
+          padding: 10px;
+          color: red;
+        }
+        .oldPrice {
+          margin-left: 20px;
+          text-decoration: line-through;
+          color: black;
+        }
+        .both {
+          float: right;
+          margin-right: 20px;
+        }
+      }
+      .select {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+    }
+  }
+}
+
+#refreshContainer {
+  padding-bottom: 40px;
+}
+
+.priceTotal {
+  border-top: 1px solid #666;
+  padding-left: 20px;
+  background-color: #fff;
+  height: 40px;
+  line-height: 40px;
+  position: fixed;
+  bottom: 50px;
+  width: 100%;
+  z-index: 9999;
+  font-weight: bolder;
+  color: red;
+  .price_right {
+    float: right;
+    padding: 0 10px;
+    background-color: red;
+    color: #fff;
+  }
+}
+
+.mui-popup {
+  font-size: 16px;
+  font-weight: bolder;
+  .lt_size {
+    color: #000;
+    .lt_userSize {
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+      line-height: 26px;
+      border: 1px solid #000;
+      margin: 5px;
+      &.active {
+        background-color: #f0ad4e;
+      }
+    }
+  }
+}

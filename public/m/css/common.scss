@@ -1,4 +1,3 @@
-@charset "UTF-8";
 html,
 body {
   width: 100%;
@@ -47,6 +46,7 @@ img {
 }
 
 /* 头部 */
+
 .lt_header {
   text-align: center;
   width: 100%;
@@ -59,49 +59,46 @@ img {
   position: fixed;
   font-weight: 1000;
   top: 0;
-}
-
-.lt_header .it_hleft,
-.lt_header .it_hright {
-  display: block;
-  width: 45px;
-  height: 45px;
-  padding-top: 12px;
-  color: #fff;
-  position: absolute;
-  top: 0;
-}
-
-.lt_header .it_hleft {
-  left: 0;
-}
-
-.lt_header .it_hright {
-  right: 0;
-}
-
-.lt_header .it_hcenter {
-  width: 100%;
-  height: 100%;
-  line-height: 45px;
+  .it_hleft,
+  .it_hright {
+    display: block;
+    width: 45px;
+    height: 45px;
+    padding-top: 12px;
+    color: #fff;
+    position: absolute;
+    top: 0;
+  }
+  .it_hleft {
+    left: 0;
+  }
+  .it_hright {
+    right: 0;
+  }
+  .it_hcenter {
+    width: 100%;
+    height: 100%;
+    line-height: 45px;
+  }
 }
 
 /* 内容 */
+
 .lt_main {
   width: 100%;
   height: 100%;
   background-color: #ccc;
   padding: 45px 0px 50px;
-}
-
-.lt_main .it_mainBox {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
+  .it_mainBox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+  }
 }
 
 /* 底部 */
+
 .lt_footer {
   width: 100%;
   max-width: 750px;
@@ -110,24 +107,19 @@ img {
   position: fixed;
   bottom: 0;
   text-align: center;
+  >a {
+    padding: 4px;
+    color: #fff; 
+    width: 25%;
+    float: left;
+    >span {
+      font-size: 24px;
+    }
+    >p {
+      font-size: 14px;
+    }
+  }
+  >a.active {
+    color: #ff8c00;
+  }
 }
-
-.lt_footer > a {
-  padding: 4px;
-  color: #fff;
-  width: 25%;
-  float: left;
-}
-
-.lt_footer > a > span {
-  font-size: 24px;
-}
-
-.lt_footer > a > p {
-  font-size: 14px;
-}
-
-.lt_footer > a.active {
-  color: #ff8c00;
-}
-/*# sourceMappingURL=common.css.map */

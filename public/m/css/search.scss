@@ -1,0 +1,63 @@
+.lt_userInput{
+  padding: 10px;
+  width: 100%;
+  > form{
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      > input{
+          width: 100%;
+          height: 30px;
+          border: none;
+          border:1px solid rgb(35, 3, 87);
+          border-radius: 4px;
+          margin: 0;
+          text-align: left;
+      }
+      > button{
+          width: 60px;
+          height: 30px;
+          position: absolute;
+          right: 0;
+          top: 0;
+          border-radius: 0px 4px 4px 0px; 
+          border: 1px solid rgb(35, 3, 87);
+          background-color: rgb(35, 3, 87);
+          color:#fff;
+          line-height: 30px;
+          padding: 0px;
+      }
+  }
+}
+
+.lt_searchList{
+  padding: 10px;   
+  width: 100%;  
+  .lt_title{
+      width: 100%;
+      line-height: 20px;
+      color: #888;
+      > span:nth-of-type(2){
+          float: right;
+      }
+  }
+  .lt_list{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+      > li {
+          a{
+            display: inline;
+          }
+          border-bottom: 1px dashed #ccc;
+          font-size: 12px;
+          padding:0px 10px;
+          > span{
+              float: right;  
+              line-height: 20px;
+          }
+      }
+  }
+}

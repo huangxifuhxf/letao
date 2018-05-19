@@ -1,8 +1,6 @@
-/*³õÊ¼»¯ÇøÓò¹ö¶¯×é¼ş*/
-mui('.mui-scroll-wrapper').scroll({
-    indicators:false
-});
-/*ÂÖ²¥Í¼µÄ³õÊ¼»¯*/
-mui('.mui-slider').slider({
-    interval:4000
+/* è½®æ’­å›¾ */
+
+var gallery = mui('.mui-slider');
+gallery.slider({
+  interval: 1000 //è‡ªåŠ¨è½®æ’­å‘¨æœŸï¼Œè‹¥ä¸º0åˆ™ä¸è‡ªåŠ¨æ’­æ”¾ï¼Œé»˜è®¤ä¸º0ï¼›
 });

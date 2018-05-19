@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>乐淘分类</title>
+  <!-- 引入favicon 图标 -->
+  <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
+  <!-- 引入 fa 图标样式 -->
+  <link rel="stylesheet" href="./assets/fa/css/font-awesome.css">
+  <!-- 引入 MUI组件样式 -->
+  <link rel="stylesheet" href="./assets/mui/css/mui.css">
+  <!-- 引入自己的公共样式 -->
+  <link rel="stylesheet" href="./css/common.css">
+  <!-- 引入当前页面的样式 -->
+  <link rel="stylesheet" href="./css/classify.css">
+
+</head>
+
+<body>
+  <div class="lt">
+    <!-- 头部 -->
+    <div class="lt_header">
+      <a href="javascript:history.back();" class="it_hleft fa fa-arrow-left"></a>
+      <div class="it_hcenter">乐淘分类</div>
+      <a href="search.html" class="it_hright fa fa-search"></a>
+    </div>
+
+    <!-- 内容 -->
+    <div class="lt_main">
+      <div class="it_mainBox">
+        <div class="box">
+          <!--一级分类 -->
+          <div class="box_left mui-clearfix">
+              <div class="mui-scroll-wrapper">
+                  <div class="mui-scroll">
+                    <!--这里放置真实显示的DOM内容-->
+                    <ul class="box_left_ul">
+
+                      <!-- <li class="active"><a href="javascript:;" data-id="1">00001</a></li>
+                      <li class="active"><a href="javascript:;" data-id="2">00002</a></li>
+                      <li class="active"><a href="javascript:;" data-id="3">00003</a></li>
+                      <li class="active"><a href="javascript:;" data-id="4">00004</a></li> -->
+                    </ul>
+                  </div>
+                </div>
+          </div>
+          <!-- 二级分类 -->
+          <div class="box_right">
+              <div class="mui-scroll-wrapper">
+                  <div class="mui-scroll">
+                    <!--这里放置真实显示的DOM内容-->
+                    <ul class="mui-clearfix">
+                     
+                      <!-- <li>
+                          <a href="javascript:;">
+                            <img src="./images/brand1.png" alt="">
+                            <p>耐克</p>
+                          </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                              <img src="./images/brand1.png" alt="">
+                              <p>耐克</p>
+                            </a>
+                          </li>
+                          <li>
+                              <a href="javascript:;">
+                                <img src="./images/brand1.png" alt="">
+                                <p>耐克</p>
+                              </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                  <img src="./images/brand1.png" alt="">
+                                  <p>耐克</p>
+                                </a>
+                              </li> -->
+                    </ul>
+                  </div>
+                </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 底部 -->
+    <div class="lt_footer">
+      <a href="./index.html">
+        <span class="fa fa-home"></span>
+        <p>首页</p>
+      </a>
+
+      <a href="./classify.html" class="active">
+        <span class="fa fa-bars"></span>
+        <p>分类</p>
+      </a>
+      <a href="javascript:;">
+        <span class="fa fa-shopping-cart"></span>
+        <p>购物车</p>
+      </a>
+
+      <a href="javascript:;">
+        <span class="fa fa-user"></span>
+        <p>会员中心</p>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- 一级 box_left 分类模板 -->
+  <script type="text/templ" id="yijiTempl">
+  <% for(var i=0; i< rows.length;i++){ %>
+    <li class="<%= i==0?'active':''%>">
+      <a href="javascript:;" data-id="<%=rows[i].id %>"><%=rows[i].categoryName %></a>
+    </li>
+    <% } %>
+  </script>
+
+
+
+
+  <!-- 二级 box_right 分类模板 -->
+  <script type="text/templ" id="erjiTempl">
+    <% if(rows.length ==0){ %>
+      <p>没有任何分类数据</p>
+    <%} else{%>
+      <% for(var i=0; i<rows.length;i++){ %>
+          <li>
+              <a href="javascript:;">
+                <img src="<%= rows[i].brandLogo%>" alt="">
+                <p><%= rows[i].brandName%></p>
+              </a>  
+            </li>
+     <% } %>
+    <% } %>
+    
+  </script>
+
+
+
+
+</body>
+<!-- 引入 MUI 组件js -->
+<script src="./assets/mui/js/mui.js"></script>
+
+<!-- 引入模板引擎 -->
+<script src="./assets/artTemplate/template-native.js"></script>
+
+<!-- 引入移动  zepto  移动版的 jq -->
+<script src="./assets/zepto/zepto.min.js"></script>
+
+<!-- 引入公共的JS -->
+<script src="./js/common.js"></script>
+
+<!-- 引入当前页的JS -->
+<script src="./js/classfiy.js"></script>
+
+
+
+
+</html>

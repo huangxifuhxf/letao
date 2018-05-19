@@ -1,171 +1,92 @@
-$(function(){
-    /*
-     初始化渲染
-     1.获取地址栏关键字
-     2.通过关键字去后台获取和关键字相关的商品数据
-     3.渲染商品列表
+mui.init({
+  pullRefresh: {
+    container: "#refreshContainer", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+    //  说明下面是来配置下拉刷新功能
+    down: {
+      height: 50, //可选,默认50.触发下拉刷新拖动距离,
+      auto: false, //可选,默认false.首次加载自动下拉刷新一次
+      contentdown: "下拉可以刷新", //可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+      contentover: "释放立即刷新", //可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+      contentrefresh: "正在刷新...", //可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+      callback: function () {
+        // 让组件隐藏
+        setTimeout(function () {
+          mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+        }, 2000);
+      } //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+    },
+    up: {
+      height: 50, //可选.默认50.触发上拉加载拖动距离
+      auto: false, //可选,默认false.自动上拉加载一次
+      contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+      contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+      callback: function () {
+        setTimeout(function () {
+          mui('#refreshContainer').pullRefresh().endPullupToRefresh(false);
+        }, 2000);
+      } //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+    }
+  }
+});
 
-     当前页搜索
-     1.点击搜索按钮 获取到关键字
-     2.通过关键字去后台获取和关键字相关的商品数据
-     3.渲染商品列表
 
-     排序展示
-     1.点击排序按钮 获取排序方式
-     2.通过当前的关键字和排序方式去后台获取相关的商品数据
-     3.渲染商品列表
+//   获取用户输入的关键字
+var obj = lt.getParameter(location.search);
 
-     下拉刷新
-     1.当用户下拉页面
-     2.通过关键字去后台重新获取和关键字相关的商品数据
-     3.渲染商品列表
+// 发送数据请求
+var getData = function (data) {
+  $.ajax({
+    type: 'get',
+    url: '/product/queryProduct',
+    data: data,
+    dataType: 'json',
+    success: function (result) {
+      console.log(result);
+      var html = template("productTemp", result);
+      $(".lt_product ul").html(html);
+    }
+  });
+}
+getData({
+  "proName": obj.key,
+  page: 1,
+  pageSize: 100
+});
 
-     上拉加载
-     1.当用户上拉页面
-     2.通过关键字去后台获取和关键字相关的商品数据（而且是根据当前页面进行获取）
-     3.渲染商品列表 当时是追加到页面当中
-     * */
 
-    /*1.初始化渲染*/
-    /*获取地址栏关键字*/
-    var key = lt.getUrlParams().key || '';
-    /*显示在搜索框中*/
-    $('.search_input').val(key);
-    /*当前渲染页面*/
-    var currPage = 1;
+// 单击超链接实现排序
+$(".lt_order > a").on("tap", function () {
+  var type = $(this).data("type");
 
-    /*4.优化渲染操作*/
-    /* 加载时候   关键字 排序（key=value） 当前页  页面*/
-    var render = function(callback){
-        /*获取搜索框当中的按钮*/
-        var key = $.trim($('.search_input').val());
-        /*判断是否输入了内容*/
-        if(!key){
-            mui.toast('请输入关键字');
-            return false;
-        }
-        /*获取需要排序的方式*/
-        var type = $('[data-type].now').attr('data-type');
-        var value = $('[data-type].now').find('span').hasClass('fa-angle-down')?2:1;
-        var order = {};
-        if(type){
-            order[type] = value;
-        }
-        /*显示多少条*/
-        var pageSize = 10;
+  // 1.如果当前被点击的元素有Active样式，那么就只需要进行箭头样式的切换
+  // 2.如果当前被点击的元素没有active样式，那么就先清除别的元素的Active样式，再为当前元素添加active,重置之前Active元素箭头方向向下
+  if ($(this).hasClass("active")) {
+    // 让span元素的样式进行切换
+    $(this).find("span:last-of-type").toggleClass("fa-angle-down fa-angle-up");
+  } else {
+    // 将之前拥有active样式的a元素的span子元素的箭头方向重置为向下
+    // $("[data-type].active").find("span:last-of-type").attr("class","fa fa-angle-down");
+    $("[data-type].active").find("span:last-of-type")[0].className = "fa fa-angle-down";
+    // 去除之前拥有Active样式的a标签的active样式
+    $("[data-type].active").removeClass("active");
+    $(this).addClass("active");
+  }
+  var orderType = $(this).find("span:last-of-type").hasClass("fa-angle-down") ? 2 : 1;
 
-        /*去后台获取数据*/
-        getProductListData($.extend({
-            proName:key,
-            page:currPage,
-            pageSize:pageSize
-        },order),function(data){
-            /*渲染商品列表*/
-            if(currPage == 1){
-                $('.lt_product').html(template('productTpl',data));
-            }else{
-                $('.lt_product').append(template('productTpl',data));
-            }
 
-            /*成功请求的其他业务*/
-            callback && callback();
-        });
-    };
-    render();
+  var data1 = {
+    "proName": obj.key,
+    page: 1,
+    pageSize: 100
+  };
+  data1[type] = orderType;
 
-    /*2.当前页搜索*/
-    $('.search_btn').on('tap',function(){
-        /*去掉排序*/
-        $('[data-type].now').removeClass('now').find('span').removeClass('fa-angle-up').addClass('fa-angle-down');
-        /*显示加载*/
-        $('.lt_product').html('<div class="loading"><span class="mui-icon mui-icon-spinner"></span></div>');
-        /*当前页码*/
-        currPage = 1;
-        /*渲染*/
-        render();
-    });
+  getData(data1);
 
-    /*3.排序展示*/
-    $('[data-type]').on('tap',function(){
-        /*当前点击的元素*/
-        var $this = $(this);
-        /*换箭头*/
-        if($this.hasClass('now')){
-            var arrow = $(this).find('span');
-            if(arrow.hasClass('fa-angle-down')){
-                arrow.removeClass('fa-angle-down').addClass('fa-angle-up');
-            }else{
-                arrow.removeClass('fa-angle-up').addClass('fa-angle-down');
-            }
-        }else{
-            /*给当前元素加上now*/
-            $('[data-type].now').removeClass('now').find('span').removeClass('fa-angle-up').addClass('fa-angle-down');
-            $this.addClass('now');
-        }
-        /*当前页码*/
-        currPage = 1;
-        /*渲染*/
-        render();
-    });
-
-    mui.init({
-        /*4.下拉刷新*/
-        pullRefresh : {
-            container:".mui-scroll-wrapper",
-            down : {
-                callback :function(){
-                    /*注意：下拉操作完成之后 业务 */
-                    /*模拟一次向后台发送请求 响应之后的时间消耗*/
-                    var that = this;/*这个是下拉组件对象  对象当中含有终止下拉操作的方法*/
-                    /*当前页码*/
-                    currPage = 1;
-                    /*开发真实的业务*/
-                    render(function(){
-                        /*下拉效果隐藏*/
-                        that.endPulldownToRefresh();
-                    });
-                }
-            },
-            /*5.上拉加载*/
-            up : {
-                callback:function(){
-                    /*注意：上拉操作完成之后 业务 */
-                    /*模拟一次向后台发送请求 响应之后的时间消耗*/
-                    var that = this;/*这个是上拉组件对象  对象当中含有终止下拉操作的方法*/
-                    setTimeout(function(){
-                        /*上拉效果隐藏*/
-                        /*可传参 如果传的是true 表示没有更多数据*/
-                        that.endPullupToRefresh();
-                    },1000);
-
-                    /*下一页*/
-                    currPage ++;
-                    /*开发真实的业务*/
-                    render(function(){
-                        /*上拉效果隐藏*/
-                        /*可传参 如果传的是true 表示没有更多数据*/
-                        that.endPullupToRefresh();
-                    });
-                }
-            }
-        }
-    });
 
 });
 
-/*获取后台数据 商品列表数据*/
-var getProductListData = function(prams,callback){
-    $.ajax({
-        type:'get',
-        url:'/product/queryProduct',
-        data:prams,
-        dataType:'json',
-        success:function(data){
-            /*模拟一下加载时间*/
-            setTimeout(function(){
-                if(data.data.length == 0) mui.toast('没有相关商品');
-                callback && callback(data);
-            },1000);
-        }
-    });
-}
+/* 跳转到详情也页面 */
+$(".lt_product").on("tap", "a", function () {
+  location.href = $(this).attr("href");
+})

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>后台管理-用户管理</title>
+  <title>后台管理-一级分类管理</title>
   <!-- bootstrap样式 -->
   <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css">
   <!-- 引入公共样式 -->
@@ -45,18 +45,19 @@
       </div>
       <div class="box">
         <div class="box_nav">
-          管理系统 / 用户管理
+          管理系统 / 一级分类管理
         </div>
         <div class="box_content">
+                  <!-- 添加一级分类 按钮 -->
+            <button type="button" class="addOneManageBtn btn btn-primary" data-toggle="modal" data-target="#myModal">
+                添加一级分类
+            </button>
           <!-- 表格 -->
           <table border="1">
             <thead>
               <tr>
                 <th>编号</th>
-                <th>用户名</th>
-                <th>电话</th>
-                <th>状态</th>
-                <th>操作</th>
+                <th>一级分类名称</th>
               </tr>
             </thead>
 
@@ -71,26 +72,42 @@
                 <ul class="pagination"></ul>
             </div>
         </div>
+
+
+  
+  <!-- 添加一级分类数据 模态框 -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">添加一级分类数据</h4>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="recipient-name" placeholder="请输入分类名称">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">确定</button>
         </div>
       </div>
     </div>
-
   </div>
 
 
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
   <!-- 表格模板 -->
-  <script type="text/template" id="templUser">
+  <script type="text/template" id="templOneManage">
     <% for(var i=0;i<rows.length;i++){ %>
       <tr>
-        <td><%=(page-1)*size+i+1%></td>
-        <td><%=rows[i].username%></td>
-        <td><%=rows[i].mobile%></td>
-        <td class="state"><%=rows[i].isDelete==0?'已启用':'已禁用'%></td>
-        <td>
-          <button type="button" data-id="<%=rows[i].isDelete%>" 
-            class="openBtn btn <%=rows[i].isDelete==0?'btn-danger':'btn-success'%>">
-            <%=rows[i].isDelete==0?'禁用':'开启'%></button>
-        </td>
+        <td><%= (page-1) * size + i + 1 %></td>
+        <td><%=rows[i].categoryName%></td>
       </tr>
       <% }%>
   </script>
@@ -107,4 +124,4 @@
 <!-- 引入分页js -->
 <script src="./assets/bootstrap-paginator/bootstrap-paginator.js"></script>
 <!-- 引入当前页面js -->
-<script src="./js/userManage.js"></script>
+<script src="./js/oneManage.js"></script>

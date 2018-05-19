@@ -1,0 +1,51 @@
+ .box {
+   width: 100%;
+   height: 100%;
+   background-color: #c9c9c9;
+   font-size: 18px;
+   font-weight: bold;
+   >div {
+     position: relative;
+   }
+   .box_left {
+     width: 100px;
+     height: 100%;
+     float: left;
+     text-align: center;
+     ul {
+       li {
+         background-color: #ffffff;
+         width: 100%;
+         height: 40px;
+         line-height: 40px;
+         border-bottom: 1px solid #666;
+         border-right: 1px solid #666;
+         &.active {
+           background-color: #c9c9c9;
+           border-right: none;
+         }
+       }
+     }
+   }
+   .box_right {
+     height: 100%;
+     overflow: hidden;
+     ul {
+       margin-left: 20px;
+       background-color: #fff;
+       li {
+         text-align: center;
+         padding: 1%;
+         width: 33.33%;
+         float: left;
+         >a {
+           border: 1px solid #000;
+           display: block;
+         }
+         >a:hover {
+           background-color: #666;
+         }
+       }
+     }
+   }
+ }

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>cart</title>
+  <!-- 引入favicon 图标 -->
+  <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
+  <!-- 引入 fa 图标样式 -->
+  <link rel="stylesheet" href="./assets/fa/css/font-awesome.css">
+  <!-- 引入 MUI组件样式 -->
+  <link rel="stylesheet" href="./assets/mui/css/mui.css">
+  <!-- 引入自己的公共样式 -->
+  <link rel="stylesheet" href="./css/common.css">
+  <!-- 引入当前页面的样式 -->
+  <link rel="stylesheet" href="./css/cart.css">
+
+</head>
+
+<body>
+  <div class="lt">
+    <!-- 头部 -->
+    <div class="lt_header">
+      <a href="javascript:history.back();" class="it_hleft fa fa-arrow-left"></a>
+      <div class="it_hcenter">cart购物车</div>
+      <a href="search.html" class="it_hright fa fa-search"></a>
+    </div>
+
+    <!-- 内容 -->
+    <div class="lt_main">
+      <div class="it_mainBox">
+
+        <!--下拉刷新容器-->
+        <div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+          <div class="mui-scroll">
+            <!--数据列表-->
+            <ul id="OA_task_2" class="mui-table-view OA_task_2">
+
+
+
+
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <!-- 价格区 -->
+    <div class="priceTotal">
+      订单总金额&nbsp;&nbsp;&yen;&nbsp;
+      <span class="price_left">0.00</span>
+      <span class="price_right">生成订单</span>
+    </div>
+
+    <!-- 底部 -->
+    <div class="lt_footer">
+      <a href="./index.html">
+        <span class="fa fa-home"></span>
+        <p>首页</p>
+      </a>
+
+      <a href="./classify.html">
+        <span class="fa fa-bars"></span>
+        <p>分类</p>
+      </a>
+
+      <a href="javascript:;" class="active">
+        <span class="fa fa-shopping-cart"></span>
+        <p>购物车</p>
+      </a>
+
+      <a href="javascript:;">
+        <span class="fa fa-user"></span>
+        <p>会员中心</p>
+      </a>
+
+    </div>
+  </div>
+
+
+  <!-- 商品列表模板 -->
+  <script type="text/template" id="cartPrice">
+    <% for(var i=list.length-1;i>=0;i--) { %>
+      <li class="mui-table-view-cell mui-transitioning">
+        <div class="mui-slider-right mui-disabled">
+          <a class="mui-btn mui-btn-red editBtn" data-productId="<%=list[i].productId%>" data-productSize="<%=list[i].productSize%>"
+            data-size="<%=list[i].size%>" data-productNum="<%=list[i].productNum%>" data-num="<%=list[i].num%>">编辑</a>
+          <a class="mui-btn mui-btn-yellow">删除</a>
+        </div>
+        <div class="mui-slider-handle" style="transform: translate(0px, 0px);">
+          <div class="mui-table-cell">
+            <a class="mui-navigate-right">
+              <img class="mui-media-object mui-pull-left" src="<%=list[i].pic[0].picAddr%>">
+              <div class="mui-media-body">
+                <p class="mui-ellipsis-2">
+                  <%=list[i].proName%>
+                </p>
+                <p class="price">
+                  <span class="newPrice">&yen;
+                    <%=list[i].price%>
+                  </span>
+                  <span class="oldPrice">&yen;
+                    <%=list[i].oldPrice%>
+                  </span>
+                  <span class="both">x
+                    <%=list[i].num%>双</span>
+                </p>
+                <p class="size">鞋码：
+                  <%=list[i].size%>
+                </p>
+                <input type="checkbox" class="select" data-num="<%=list[i].num%>" data-price="<%=list[i].price%>">
+              </div>
+            </a>
+          </div>
+        </div>
+      </li>
+      <% }%>
+  </script>
+
+  <!-- 编辑内容模板 -->
+  <script type="text/template" id="editcart">
+    <p class="lt_size">
+      <%
+            var arr = productsize.split("-");
+            var start = arr[0];
+            var end = arr[1];
+            for(var i=start;i<=end;i++){ %>
+        <span class='lt_userSize<%=i==size?' active ':' '%>'>
+          <%=i%>
+        </span>
+        <% }
+        %>
+    </p>
+    修改
+    <div class="mui-numbox" data-numbox-min="1" data-numbox-max="<%=productnum%>">
+      <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+      <input id="test" class="mui-input-numbox" type="number" value="<%=num%>">
+      <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+    </div> 双
+  </script>
+
+
+
+</body>
+<!-- 引入 MUI 组件js -->
+<script src="./assets/mui/js/mui.js"></script>
+
+<!-- 引入模板引擎 -->
+<script src="./assets/artTemplate/template-native.js"></script>
+
+<!-- 引入移动  zepto  移动版的 jq -->
+<script src="./assets/zepto/zepto.min.js"></script>
+
+<!-- 引入公共的JS -->
+<script src="./js/common.js"></script>
+
+<!-- 引入当前页的JS -->
+<script src="./js/cart.js"></script>
+
+
+
+
+</html>

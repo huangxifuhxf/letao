@@ -1,0 +1,12 @@
+.box_content {
+  .box_left,
+  .box_right {
+    width: 50%;
+    height: 500px;
+    border: 1px solid #000;
+    float: left;
+  }
+  .box_right {
+    float: right;
+  }
+}

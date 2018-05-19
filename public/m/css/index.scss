@@ -1,0 +1,67 @@
+/* 导航区 */
+
+.navBox {
+  padding: 10px;
+  >ul {
+    li {
+      width: 33.33%;
+      float: left;
+      >a {
+        width: 100%;
+      }
+    }
+  }
+  .cz_active {
+    a:nth-child(2) {
+      width: 32.9%;
+      float: right;
+    }
+    a:nth-child(1) {
+      width: 67.1%;
+      >img {
+        width: 50%;
+        float: left;
+      }
+    }
+    a:nth-child(3) {
+      width: 67.1%;
+      >img {
+        width: 50%;
+        float: left;
+      }
+    }
+  }
+}
+
+/* 品牌区 */
+
+.pinpai {
+  padding: 0 10px 10px;
+  .pinpai_content {
+    >ul {
+      li {
+        font-size: 14px;
+        padding: 5px;
+        float: left;
+        width: 49%;    
+        text-align: center;
+        box-shadow: 0 0 2px 2px #666;
+        margin: 1% 0;
+        .name {
+          font-weight: bold;
+        }
+        .new {
+          color: red;
+          font-weight: bold;
+          line-height: 40px;
+        }
+        .old {
+          color: #ccc;
+        }
+      }
+      li:nth-child(even) {
+        float: right; 
+      }
+    }
+  }
+}

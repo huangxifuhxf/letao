@@ -1,0 +1,43 @@
+.lt_footer{
+  background-color: #ccc;
+  padding: 8px 10px 0px;
+  box-sizing: border-box;
+  > button{
+       float: right;
+       margin-left: 20px;
+  }
+}
+.it_mainBox{
+  p{
+      border-bottom: 1px solid #ccc;
+      padding: 10px;
+      color: #666;
+      font-size: 14px;
+  }
+  .lt_proname{
+      font-size: 18px
+  }
+  .lt_price{
+      color: red;
+  }
+  .old_price{
+      margin-left: 10px;
+      text-decoration: line-through;
+  }
+  .lt_size{
+      > span{
+          width: 25px;
+          height: 25px;
+          margin: 5px;
+          // float: left;
+          display: inline-block;
+          border: 1px solid #ccc;
+          text-align: center;
+          line-height: 25px;
+          margin-left: 10px;
+          &.active{
+              background-color: orange;
+          }
+      }
+  }
+}
